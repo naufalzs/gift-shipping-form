@@ -150,6 +150,32 @@ body
     font-size: 14px
     font-weight: 700
 
+.form__input
+  margin: 10px 0 0
+  color: $color-primary
+  &--step-1
+  display: flex
+  flex-direction: column
+  row-gap: 16px
+
+.input
+  &__label
+    font-size: 14px
+    font-weight: 500
+  &__text, &__textarea
+    width: 100%
+    min-height: 36px
+    outline: none
+    border: 1px solid $color-gray-light
+    border-radius: 5px
+    padding: 12px 8px
+    font-size: 16px
+    font-family: $font-poppins
+    &:focus, &:active
+      outline: none
+      border: 2px solid $color-primary
+      margin: -1px
+
 @media screen and (max-width: 768px)
   .container
     align-items: flex-start
