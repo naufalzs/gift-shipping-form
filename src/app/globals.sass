@@ -97,6 +97,59 @@ body
     &:hover
       background-color: $color-button-next-active
 
+.stepper
+  padding: 15px 0 20px
+  margin-left: 20%
+  &--desktop
+    display: block
+  &--mobile
+    display: none
+
+.step
+  display: flex
+
+.step-status
+  display: flex
+  flex-direction: column
+  align-items: center
+  &__circle
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 36px
+    height: 36px
+    border-radius: 50%
+    border: 2px solid $color-primary
+    background-color: transparent
+  &__circle-inner
+    width: 26px
+    height: 26px
+    border-radius: 50%
+    background-color: $color-primary
+  &__connector
+    height: 40px
+    width: 6px
+    margin: 10px 0px
+    border-radius: 20px
+    overflow: hidden
+    background-color: $color-secondary
+  &__connector-progress
+    width: 100%
+    height: 20px
+    background-color: $color-primary
+
+.step-info
+  display: block
+  margin-left: 16px
+  &__order
+    color: $color-gray-light
+    font-weight: 500
+    text-transform: uppercase
+  &__title
+    color: $color-primary
+    font-size: 14px
+    font-weight: 700
+
 @media screen and (max-width: 768px)
   .container
     align-items: flex-start
@@ -148,3 +201,40 @@ body
     width: 100%
     padding: 20px 16px
     background-color: $color-card
+
+  .stepper
+    margin: 0
+    &--desktop
+      display: none
+    &--mobile
+      display: flex
+      align-items: center
+      justify-content: center
+
+  .step
+    display: block
+
+  .step-status
+    flex-direction: row
+    &__circle
+      width: 24px
+      height: 24px
+    &__circle-inner
+      width: 16px
+      height: 16px
+    &__connector
+      width: 40px
+      height: 3px
+      margin: 0 10px
+      border-radius: 2px
+      overflow: hidden
+      background-color: $color-secondary
+    &__connector-progress
+      width: 20px
+      height: 100%
+      background-color: $color-primary
+
+  .step-info
+    margin: 10px 0 0 -4px
+    &__title
+      display: none
