@@ -232,7 +232,7 @@ export default function Home() {
                 </label>
               </div>
             </form> */}
-            <form className="form__input form__input--step-4" id="form-step-4">
+            {/* <form className="form__input form__input--step-4" id="form-step-4">
               <div className="summary__container">
                 <div className="summary__item">
                   <div className="item__title">Item Details</div>
@@ -249,6 +249,26 @@ export default function Home() {
                 <div className="summary__total">
                   <div className="total__title">Total</div>
                   <div className="total__price">$500</div>
+                </div>
+              </div>
+            </form> */}
+            <form className="form__input form__input--step-5" id="form-step-5">
+              <div className="finished">
+                <div className="finished__title">Thank you,</div>
+                <div className="finished__customer-name">Naufal Zufar</div>
+                <div className="finished__image"></div>
+                <Image
+                  src="/images/thumbs-up.svg"
+                  className="finished__image"
+                  width={100}
+                  height={100}
+                />
+                <div className="finished__message">
+                  Your order has been successfully completed. Throughout the
+                  process you can check your order shipment step on your email.
+                  Thanks to trusted us as your gift partner. If you need
+                  additional support, please kindly email us at
+                  support@giftwrapper.com
                 </div>
               </div>
             </form>
