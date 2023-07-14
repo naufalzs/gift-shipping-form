@@ -162,6 +162,10 @@ body
     grid-template-columns: repeat(3, 1fr)
     gap: 20px 40px
     margin-right: 80px
+  &--step-3
+    display: flex
+    flex-direction: column
+    row-gap: 28px
 
 .gift-card__wrapper
   grid-column: span 2
@@ -169,6 +173,11 @@ body
 
 input[type=checkbox]
   visibility: hidden
+
+input[type=radio]
+  display: none
+  appearance: none
+  -webkit-appearance: none
 
 .input
   &__label
@@ -199,12 +208,67 @@ input[type=checkbox]
     border-radius: 5px
     margin: 0 auto 12px
     background-color: #fff
+  &__radio
+    width: 20px
+    height: 20px
+    margin-right: 20px
+    border: 2px solid #fff
+    border-radius: 50%
+    flex: 0 0 auto
+    background-color: $color-secondary
+    box-shadow: 0 0 0 2px $color-secondary
 
 #addon-special-box:checked ~ .input__checkbox--special-box,
 #addon-ribbon:checked ~ .input__checkbox--ribbon,
 #addon-bubble-wrap:checked ~ .input__checkbox--bubble-wrap,
 #addon-gift-card:checked ~ .input__checkbox--gift-card
   border: 4px solid $color-primary
+
+.radio-shipment
+  &__container
+    width: 100%
+    height: 75px
+    display: flex
+    align-items: center
+    padding: 20px
+    border: 3px solid $color-secondary
+    border-radius: 5px
+    background-color: #fff
+    cursor: pointer
+  &__info
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    font-size: 14px
+    font-weight: 500
+
+#shipment-regular
+  &:hover, &:checked
+    ~ .radio-shipment__container--regular
+      border: 3px solid $color-primary
+    ~ .radio-shipment__container--regular > .input__radio--regular
+      border: 2px solid $color-primary
+      background-color: $color-primary
+      box-shadow: 0 0 0 2px $color-primary
+
+#shipment-one-day
+  &:hover, &:checked
+    ~ .radio-shipment__container--one-day
+      border: 3px solid $color-primary
+    ~ .radio-shipment__container--one-day > .input__radio--one-day
+      border: 2px solid $color-primary
+      background-color: $color-primary
+      box-shadow: 0 0 0 2px $color-primary
+
+#shipment-instant
+  &:hover, &:checked
+    ~ .radio-shipment__container--instant
+      border: 3px solid $color-primary
+    ~ .radio-shipment__container--instant > .input__radio--instant
+      border: 2px solid $color-primary
+      background-color: $color-primary
+      box-shadow: 0 0 0 2px $color-primary
 
 @media screen and (max-width: 768px)
   .container
@@ -303,6 +367,23 @@ input[type=checkbox]
     &--step-2
       grid-template-columns: repeat(2, 1fr)
       gap: 5px 20px
+    &--step-3
+      row-gap: 18px
 
   .gift-card__wrapper
-    margin: 15px 0 0 
+    margin: 15px 0 0
+
+  .input
+    &__radio
+      width: 16px
+      height: 16px
+      margin-right: 10px
+
+  .radio-shipment
+    &__container
+      height: 55px
+      padding: 12px
+
+  .shipment-info
+    &__title
+      font-size: 12px
