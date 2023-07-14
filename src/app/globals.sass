@@ -154,14 +154,28 @@ body
   margin: 10px 0 0
   color: $color-primary
   &--step-1
-  display: flex
-  flex-direction: column
-  row-gap: 16px
+    display: flex
+    flex-direction: column
+    row-gap: 16px
+  &--step-2
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 20px 40px
+    margin-right: 80px
+
+.gift-card__wrapper
+  grid-column: span 2
+  margin: 36px 0
+
+input[type=checkbox]
+  visibility: hidden
 
 .input
   &__label
     font-size: 14px
     font-weight: 500
+    &--center
+      text-align: center
   &__text, &__textarea
     width: 100%
     min-height: 36px
@@ -175,6 +189,22 @@ body
       outline: none
       border: 2px solid $color-primary
       margin: -1px
+  &__checkbox
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 140px
+    height: 140px
+    border: 4px solid $color-secondary
+    border-radius: 5px
+    margin: 0 auto 12px
+    background-color: #fff
+
+#addon-special-box:checked ~ .input__checkbox--special-box,
+#addon-ribbon:checked ~ .input__checkbox--ribbon,
+#addon-bubble-wrap:checked ~ .input__checkbox--bubble-wrap,
+#addon-gift-card:checked ~ .input__checkbox--gift-card
+  border: 4px solid $color-primary
 
 @media screen and (max-width: 768px)
   .container
@@ -264,3 +294,15 @@ body
     margin: 10px 0 0 -4px
     &__title
       display: none
+
+  .gift-card__wrapper
+    margin: 36px 20px
+
+@media screen and (max-width: 425px)
+  .form__input
+    &--step-2
+      grid-template-columns: repeat(2, 1fr)
+      gap: 5px 20px
+
+  .gift-card__wrapper
+    margin: 15px 0 0 
