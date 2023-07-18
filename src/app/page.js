@@ -1,3 +1,4 @@
+"use client";
 import stepData from "json/step.json";
 import Image from "next/image";
 
