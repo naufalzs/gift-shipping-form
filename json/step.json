@@ -2,19 +2,23 @@
   "data": [
     {
       "id": "64afb311d8bc3461e48fd7fc",
-      "title": "Shipping Info"
+      "title": "Shipping Info",
+      "description": "Please provide your personal information to help us enter your data."
     },
     {
       "id": "64afb311732a337e50bf93e7",
-      "title": "Add On"
+      "title": "Add On",
+      "description": "Choose one or more extra add-ons to complete your gift."
     },
     {
       "id": "64afb3111b55d8e55daf411d",
-      "title": "Shipment"
+      "title": "Shipment",
+      "description": "Choose your preferred shipment option."
     },
     {
       "id": "64afb311118a382f10414786",
-      "title": "Summary"
+      "title": "Summary",
+      "description": "This section is a recap of your shopping. Please double-check it before we make the receipt. "
     }
   ]
 }
