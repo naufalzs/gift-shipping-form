@@ -3,6 +3,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "json/*": ["./json/*"],
+      "components/*": ["./components/*"]
     }
   }
 }
