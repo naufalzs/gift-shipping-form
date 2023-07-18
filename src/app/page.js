@@ -7,16 +7,41 @@ import StepFive from "components/StepFive";
 import stepData from "json/step.json";
 import { useState } from "react";
 import cx from "classnames";
+import Image from "next/image";
 
-const Step = ({ isLastOrder, index, title }) => (
+const Step = ({ isLastOrder, index, currentStep, title }) => (
   <div className="step">
     <div className="step-status">
-      <div className="step-status__circle">
-        <div className="step-status__circle-inner"></div>
+      <div
+        className={cx("step-status__circle", {
+          "step-status__circle--active": index === currentStep,
+          "step-status__circle--success": index < currentStep,
+        })}
+      >
+        <div
+          className={cx("step-status__circle-inner", {
+            "step-status__circle-inner--active": index === currentStep,
+          })}
+        >
+          <Image
+            src="/images/check.svg"
+            className={cx("step-status__check-icon", {
+              "step-status__check-icon--active": index < currentStep,
+            })}
+            width={20}
+            height={20}
+            alt="success step icon"
+          />
+        </div>
       </div>
       {!isLastOrder && (
         <div className="step-status__connector">
-          <div className="step-status__connector-progress"></div>
+          <div
+            className={cx("step-status__connector-progress", {
+              "step-status__connector-progress--active": index === currentStep,
+              "step-status__connector-progress--success": index < currentStep,
+            })}
+          ></div>
         </div>
       )}
     </div>
@@ -56,15 +81,6 @@ const CurrentForm = ({ currentStep }) => {
   );
 };
 
-const stepper = stepData.data.map((step, index) => (
-  <Step
-    key={step.id}
-    isLastOrder={index + 1 === stepData.data.length}
-    index={index}
-    title={step.title}
-  />
-));
-
 export default function Home() {
   const firstStep = 0;
   const lastStep = 4;
@@ -79,6 +95,16 @@ export default function Home() {
     if (currentStep <= firstStep) return;
     setCurrentStep(currentStep - 1);
   };
+
+  const stepper = stepData.data.map((step, index) => (
+    <Step
+      key={step.id}
+      isLastOrder={index + 1 === stepData.data.length}
+      index={index}
+      currentStep={currentStep}
+      title={step.title}
+    />
+  ));
 
   return (
     <div className="container">

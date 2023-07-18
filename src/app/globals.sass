@@ -12,6 +12,7 @@ $color-card: #E9C2B8
 $color-button-next-active: #9A71F9
 $color-button-back: #D29D90
 $color-button-back-active: #D48D7B
+$color-success: #059669
 
 *
   box-sizing: border-box
@@ -124,13 +125,30 @@ body
     width: 36px
     height: 36px
     border-radius: 50%
-    border: 2px solid $color-primary
-    background-color: transparent
+    transition: all .2s ease-in-out
+    border: 2px solid $color-secondary
+    background-color: $color-secondary
+    &--active
+      border: 2px solid $color-primary
+      background-color: transparent
+    &--success
+      border: 2px solid $color-success
+      background-color: $color-success
   &__circle-inner
-    width: 26px
-    height: 26px
-    border-radius: 50%
-    background-color: $color-primary
+    visibility: hidden
+    display: flex
+    justify-content: center
+    align-items: center
+    &--active
+      visibility: visible
+      width: 26px
+      height: 26px
+      border-radius: 50%
+      background-color: $color-primary
+  &__check-icon
+    visibility: hidden
+    &--active
+      visibility: visible
   &__connector
     height: 40px
     width: 6px
@@ -139,9 +157,18 @@ body
     overflow: hidden
     background-color: $color-secondary
   &__connector-progress
-    width: 100%
-    height: 20px
-    background-color: $color-primary
+    visibility: hidden
+    transition: all .3s ease-in-out
+    &--active
+      visibility: visible
+      width: 100%
+      height: 20px
+      background-color: $color-primary
+    &--success
+      visibility: visible
+      width: 100%
+      height: 40px
+      background-color: $color-success
 
 .step-info
   display: block
@@ -331,7 +358,6 @@ input[type=radio]
     font-weight: 700
   &__message
     color: $color-gray-dark
-  
 
 @media screen and (max-width: 768px)
   .container
@@ -456,4 +482,3 @@ input[type=radio]
   .summary
     &__total
       font-size: 20px
-  
