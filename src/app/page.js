@@ -108,6 +108,7 @@ export default function Home() {
   const firstStep = 0;
   const lastStep = 4;
   const [{currentStep}, dispatchStep] = useReducer(stepReducer, { currentStep: 0 });
+  const [formInput, setformInput] = useState({})
 
   const handleNext = () => {
     if (currentStep >= lastStep) return;
@@ -150,7 +151,9 @@ export default function Home() {
             firstStep,
             lastStep,
             handleNext,
-            handleBack
+            handleBack,
+            formInput,
+            setformInput
           }}>
           <CurrentForm currentStep={currentStep} />
           <ButtonGroup submitId={`form-step-${currentStep + 1}`} />
