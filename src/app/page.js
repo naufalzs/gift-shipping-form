@@ -5,10 +5,11 @@ import StepThree from "components/StepThree";
 import StepFour from "components/StepFour";
 import StepFive from "components/StepFive";
 import stepData from "json/step.json";
-import { useReducer, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 import cx from "classnames";
 import Image from "next/image";
 import { NEXT_STEP, PREV_STEP } from "utils/types/step";
+import ButtonGroup from "components/ButtonGroup";
 
 const Step = ({ isLastOrder, index, currentStep, title }) => (
   <div className="step">
@@ -101,6 +102,8 @@ function stepReducer(state, action) {
   }
 }
 
+export const StepContext = createContext(null)
+
 export default function Home() {
   const firstStep = 0;
   const lastStep = 4;
@@ -142,28 +145,16 @@ export default function Home() {
           <div className="stepper stepper--mobile">{stepper}</div>
         </section>
         <section className="form-container">
+          <StepContext.Provider value={{
+            currentStep,
+            firstStep,
+            lastStep,
+            handleNext,
+            handleBack
+          }}>
           <CurrentForm currentStep={currentStep} />
-          <div className="btn-container">
-            <button
-              className={cx("btn btn--back", {
-                "btn--hide":
-                  currentStep === firstStep || currentStep === lastStep,
-              })}
-              onClick={handleBack}
-            >
-              Step Back
-            </button>
-            <button
-              className={cx("btn btn--next", {
-                "btn--hide": currentStep === lastStep,
-              })}
-              form="form-step-1"
-              type="submit"
-              onClick={handleNext}
-            >
-              Next Step
-            </button>
-          </div>
+          <ButtonGroup submitId={`form-step-${currentStep + 1}`} />
+          </StepContext.Provider>
         </section>
       </main>
     </div>
