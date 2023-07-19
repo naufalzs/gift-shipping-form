@@ -5,9 +5,10 @@ import StepThree from "components/StepThree";
 import StepFour from "components/StepFour";
 import StepFive from "components/StepFive";
 import stepData from "json/step.json";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import cx from "classnames";
 import Image from "next/image";
+import { NEXT_STEP, PREV_STEP } from "utils/types/step";
 
 const Step = ({ isLastOrder, index, currentStep, title }) => (
   <div className="step">
@@ -81,19 +82,38 @@ const CurrentForm = ({ currentStep }) => {
   );
 };
 
+function stepReducer(state, action) {
+  switch (action.type) {
+    case NEXT_STEP:
+      return {
+        ...state,
+        currentStep: state.currentStep + 1,
+      };
+
+    case PREV_STEP:
+      return {
+        ...state,
+        currentStep: state.currentStep - 1,
+      };
+
+    default:
+      return state;
+  }
+}
+
 export default function Home() {
   const firstStep = 0;
   const lastStep = 4;
-  const [currentStep, setCurrentStep] = useState(firstStep);
+  const [{currentStep}, dispatchStep] = useReducer(stepReducer, { currentStep: 0 });
 
   const handleNext = () => {
     if (currentStep >= lastStep) return;
-    setCurrentStep(currentStep + 1);
+    dispatchStep({ type: NEXT_STEP });
   };
 
   const handleBack = () => {
     if (currentStep <= firstStep) return;
-    setCurrentStep(currentStep - 1);
+    dispatchStep({ type: PREV_STEP });
   };
 
   const stepper = stepData.data.map((step, index) => (
