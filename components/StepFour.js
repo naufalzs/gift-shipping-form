@@ -2,10 +2,8 @@ import React, { useContext } from "react";
 import { StepContext } from "@/app/page";
 import chosenItem from "json/chosenItem.json";
 
-const SummaryItem = ({ title, data }) => {
-  let subtotal = 0;
+const SummaryItem = ({ title, data, subtotal }) => {
   const itemDetails = data.map((item) => {
-    subtotal += parseInt(item.price);
     return (
       <div key={item.name} className="item__details">
         <div className="details__title">{item.name}</div>
@@ -56,11 +54,22 @@ export default function StepFour() {
     };
   };
 
+  const sumSubtotal = (itemsData) => {
+    return itemsData.reduce((total, item) => {
+      return total + parseInt(item.price);
+    }, 0);
+  };
+
   const giftMessage = formInput.addOn["gift-card"];
   delete formInput.addOn["gift-card"];
 
   const groupAddon = createGroup(formInput?.addOn)?.data;
   const groupShipment = formInput?.shipment;
+
+  const subtotalItem = sumSubtotal(chosenItem?.data);
+  const subtotalAddon = sumSubtotal(groupAddon);
+  const subtotalShipment = sumSubtotal(groupShipment);
+  const totalPrice = subtotalItem + subtotalAddon + subtotalShipment;
   return (
     <form
       onSubmit={onSubmit}
@@ -69,13 +78,25 @@ export default function StepFour() {
     >
       <div className="summary__container">
         <div>
-          <SummaryItem title="Item" data={chosenItem?.data} />
-          <SummaryItem title="Add On" data={groupAddon} />
-          <SummaryItem title="Delivery" data={groupShipment} />
+          <SummaryItem
+            title="Item"
+            data={chosenItem?.data}
+            subtotal={subtotalItem}
+          />
+          <SummaryItem
+            title="Add On"
+            data={groupAddon}
+            subtotal={subtotalAddon}
+          />
+          <SummaryItem
+            title="Delivery"
+            data={groupShipment}
+            subtotal={subtotalShipment}
+          />
         </div>
         <div className="summary__total">
           <div className="total__title">Total</div>
-          <div className="total__price">$500</div>
+          <div className="total__price">${totalPrice}</div>
         </div>
       </div>
     </form>
