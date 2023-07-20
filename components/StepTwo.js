@@ -22,7 +22,7 @@ export default function StepTwo() {
   }, [isGiftCard]);
 
   const onSubmit = (data) => {
-    setformInput({ ...formInput, ...data });
+    setformInput({ ...formInput, addOn: data });
     handleNext();
   };
   return (
@@ -47,7 +47,9 @@ export default function StepTwo() {
             alt="add on special box"
           />
         </div>
-        <div className="input__label input__label--center">Special Box</div>
+        <div className="input__label input__label--center">
+          Special Box (+10$)
+        </div>
       </label>
       <label htmlFor="addon-ribbon">
         <input
@@ -65,7 +67,7 @@ export default function StepTwo() {
             alt="add on ribbon"
           />
         </div>
-        <div className="input__label input__label--center">Ribbon</div>
+        <div className="input__label input__label--center">Ribbon (+2$)</div>
       </label>
       <label htmlFor="addon-bubble-wrap">
         <input
@@ -83,7 +85,9 @@ export default function StepTwo() {
             alt="add on bubble wrap"
           />
         </div>
-        <div className="input__label input__label--center">Bubble Wrap</div>
+        <div className="input__label input__label--center">
+          Bubble Wrap (+1$)
+        </div>
       </label>
       <label htmlFor="addon-gift-card">
         <input
@@ -101,7 +105,7 @@ export default function StepTwo() {
             alt="add on gift card"
           />
         </div>
-        <div className="input__label input__label--center">Gift Card</div>
+        <div className="input__label input__label--center">Gift Card (+3$)</div>
       </label>
       <label htmlFor="gift-card" className="gift-card__wrapper">
         <div className="input__label">Gift Card Message</div>
