@@ -1,10 +1,63 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StepContext } from "@/app/page";
+import { useForm } from "react-hook-form";
+import {
+  SHIPMENT_INSTANT,
+  SHIPMENT_ONE_DAY,
+  SHIPMENT_REGULAR,
+} from "utils/types/shipment";
 
 export default function StepThree() {
+  const { handleNext, formInput, setformInput } = useContext(StepContext);
+  const { register, handleSubmit } = useForm({
+    mode: "onSubmit",
+    defaultValues: {
+      shipment: formInput?.shipment?.[0]?.name || SHIPMENT_REGULAR,
+    },
+  });
+
+  const onSubmit = (data) => {
+    const shipmentObject = (chosenShipment) => {
+      switch (chosenShipment) {
+        case SHIPMENT_REGULAR:
+          return {
+            name: SHIPMENT_REGULAR,
+            price: 15,
+          };
+
+        case SHIPMENT_ONE_DAY:
+          return {
+            name: SHIPMENT_REGULAR,
+            price: 25,
+          };
+
+        case SHIPMENT_INSTANT:
+          return {
+            name: SHIPMENT_INSTANT,
+            price: 35,
+          };
+
+        default:
+          break;
+      }
+    };
+
+    setformInput({ ...formInput, shipment: [shipmentObject(data?.shipment)] });
+    handleNext();
+  };
   return (
-    <form className="form__input form__input--step-3" id="form-step-3">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="form__input form__input--step-3"
+      id="form-step-3"
+    >
       <div>
-        <input type="radio" name="shipment" id="shipment-regular" />
+        <input
+          type="radio"
+          id="shipment-regular"
+          value={SHIPMENT_REGULAR}
+          {...register("shipment", { required: true })}
+        />
         <label
           htmlFor="shipment-regular"
           className="radio-shipment__container radio-shipment__container--regular"
@@ -19,7 +72,12 @@ export default function StepThree() {
         </label>
       </div>
       <div>
-        <input type="radio" name="shipment" id="shipment-one-day" />
+        <input
+          type="radio"
+          id="shipment-one-day"
+          value={SHIPMENT_ONE_DAY}
+          {...register("shipment", { required: true })}
+        />
         <label
           htmlFor="shipment-one-day"
           className="radio-shipment__container radio-shipment__container--one-day"
@@ -34,7 +92,12 @@ export default function StepThree() {
         </label>
       </div>
       <div>
-        <input type="radio" name="shipment" id="shipment-instant" />
+        <input
+          type="radio"
+          id="shipment-instant"
+          value={SHIPMENT_INSTANT}
+          {...register("shipment", { required: true })}
+        />
         <label
           htmlFor="shipment-instant"
           className="radio-shipment__container radio-shipment__container--instant"
