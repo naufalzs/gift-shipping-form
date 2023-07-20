@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StepContext } from "@/app/page";
+import chosenItem from "json/chosenItem.json";
 
 export default function StepFour() {
+  const { handleNext, formInput } = useContext(StepContext);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleNext();
+  };
+
   return (
-    <form className="form__input form__input--step-4" id="form-step-4">
+    <form
+      onSubmit={onSubmit}
+      className="form__input form__input--step-4"
+      id="form-step-4"
+    >
       <div className="summary__container">
         <div className="summary__item">
           <div className="item__title">Item Details</div>
