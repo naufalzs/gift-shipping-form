@@ -265,7 +265,7 @@ input[type=radio]
     background-color: $color-secondary
     box-shadow: 0 0 0 2px $color-secondary
   &__error
-    height: 20px
+    min-height: 20px
     margin-left: 2px
     color: $color-error
 
@@ -417,6 +417,7 @@ input[type=radio]
     width: 100%
     padding: 20px 16px
     background-color: $color-card
+    box-shadow: 0px 0px 9px 6px rgba(0, 0, 0, 0.06)
 
   .stepper
     margin: 0
@@ -449,11 +450,22 @@ input[type=radio]
       width: 20px
       height: 100%
       background-color: $color-primary
+      &--active
+        width: 20px
+        height: 100%
+      &--success
+        width: 40px
+        height: 100%
+        background-color: $color-success
 
   .step-info
     margin: 10px 0 0 -4px
     &__title
       display: none
+
+  .form__input
+    width: 100%
+    overflow: scroll
 
   .gift-card__wrapper
     margin: 36px 20px
