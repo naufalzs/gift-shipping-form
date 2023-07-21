@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { StepContext } from "@/app/page";
 
 export default function StepFive() {
+  const {formInput} = useContext(StepContext)
+
   return (
     <form className="form__input form__input--step-5" id="form-step-5">
       <div className="finished">
         <div className="finished__title">Thank you,</div>
-        <div className="finished__customer-name">Naufal Zufar</div>
+        <div className="finished__customer-name">{formInput?.bio?.name}</div>
         <div className="finished__image"></div>
         <Image
           src="/images/thumbs-up.svg"
