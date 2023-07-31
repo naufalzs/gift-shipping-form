@@ -27,7 +27,7 @@ export default function StepThree() {
 
         case SHIPMENT_ONE_DAY:
           return {
-            name: SHIPMENT_REGULAR,
+            name: SHIPMENT_ONE_DAY,
             price: 25,
           };
 
