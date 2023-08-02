@@ -93,7 +93,7 @@ export default function StepOne() {
           id="address"
           placeholder="e.g. Gangnam street, Busan, 14020"
           className="input__textarea"
-          rows={5}
+          rows={4}
           {...register("address")}
         />
         <div className="input__error">{errors.address?.message}</div>
